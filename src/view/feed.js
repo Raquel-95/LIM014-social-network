@@ -1,8 +1,5 @@
 import {
-  getTask,
-  getTasks,
-  deleteTasks,
-  updateTask,
+  getTask, getTasks, deleteTasks, updateTask,
 } from '../lib/feedservice.js';
 
 const db = firebase.firestore();
@@ -56,9 +53,9 @@ export default () => {
     const description = taskForm['task-description'].value;
 
     if (!editStatus) {
-      const descriptionEdit = description;
-    } else {
       taskForm['btn-task-form'].innerText = 'Guardar';
+    } else {
+      console.log('cambio de boton', description);
     }
 
     db.collection('task').doc().set({
