@@ -1,10 +1,12 @@
+/** @format */
+
 body {
-    background: rgba(242, 151, 5, 0.5);
-    color: rgba(0, 0, 0, 0.87);
-    font-family: Roboto;
-    margin: 0;
-    padding: 0;
-  }
+  background: rgba(242, 151, 5, 0.5);
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+}
 
 .logo {
   position: absolute;
@@ -21,20 +23,20 @@ body {
   top: 500px;
   display: inline-flex;
   justify-content: center;
-  align-items: center
-  }
-  .google {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    left: 400px;
-    top: 500px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center
-    }
- 
-footer{
+  align-items: center;
+}
+.google {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 400px;
+  top: 500px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
   top: 720px;
   display: inline-flex;
   flex-direction: row;
@@ -43,12 +45,12 @@ footer{
   align-items: flex-end;
 }
 
-.logo-feed{
-width: 50px;
-height: 50px;
+.logo-feed {
+  width: 50px;
+  height: 50px;
 }
 
-.card-body-primary{
+.card-body-primary {
   border: solid #789356 5px;
   border-radius: 10px;
   border-width: 20px;
@@ -63,7 +65,7 @@ height: 50px;
   width: 500px;
 }
 
-#task-form{
+#task-form {
   width: 500px;
   height: 220px;
   left: 672px;
@@ -75,18 +77,18 @@ height: 50px;
   align-items: center;
 }
 
-.btn-primary{
+.btn-primary {
   width: 80px;
   height: 30px;
   right: 124px;
-  top: calc(50% - 46px/2 - 132px);
-  background: #C4C4C4;
+  top: calc(50% - 46px / 2 - 132px);
+  background: #c4c4c4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   font-size: 15px;
 }
 
-#task-description{
+#task-description {
   width: 420px;
   height: 130px;
   margin: 20px;
@@ -94,8 +96,7 @@ height: 50px;
   font-size: 14px;
 }
 
-.buttons{
+.buttons {
   display: flex;
   flex-direction: column;
 }
-

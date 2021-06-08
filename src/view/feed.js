@@ -1,5 +1,5 @@
 /** @format */
-
+import { logOutEvent } from "../firebase/firebasecontroller.js";
 // export default () => {
 //   const contenidoFeed = `
 //   <div id="Pantalla">
@@ -33,7 +33,7 @@ export default () => {
   const viewFeed = `
 <div id="cabecera">
       <img id="imageProfile" src='images/user.png'/>
-       <button type="submit" id="buttonLogout">Cerrar sesión</button>
+       <button type="submit" id="buttonLogOut">Cerrar sesión</button>
     </div>
   <div class="container p-4">
   <div class="row">
@@ -66,6 +66,9 @@ export default () => {
   const divElemt = document.createElement("div");
   divElemt.classList.add("position");
   divElemt.innerHTML = viewFeed;
+
+  const buttonLogOut = divElemt.querySelector("#buttonLogOut");
+  buttonLogOut.addEventListener("click", logOutEvent);
 
   const taskForm = divElemt.querySelector("#task-form");
 

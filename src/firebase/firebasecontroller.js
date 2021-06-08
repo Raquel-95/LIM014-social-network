@@ -1,6 +1,6 @@
 /** @format */
 
-import { loginUser, loginGoogle } from "../firebase/auth.js";
+import { loginUser, loginGoogle, logOut } from "../firebase/auth.js";
 
 export const loginUserEvent = (user, password, errorContainer) => {
   loginUser(user, password)
@@ -21,4 +21,11 @@ export const loginGoogleEvent = () => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const logOutEvent = () => {
+  logOut().then(() => {
+    window.location.assign("#/");
+    console.log("¡Se cerro!");
+  });
 };
