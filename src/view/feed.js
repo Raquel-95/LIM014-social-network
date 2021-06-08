@@ -1,5 +1,11 @@
 /** @format */
 import { logOutEvent } from "../firebase/firebasecontroller.js";
+import {
+  getTasks,
+  getTask,
+  deleteTasks,
+  updateTask,
+} from "../lib/feedservice.js";
 // export default () => {
 //   const contenidoFeed = `
 //   <div id="Pantalla">
@@ -20,14 +26,14 @@ import { logOutEvent } from "../firebase/firebasecontroller.js";
 //   return divElem;
 // };
 
-import {
-  getTask,
-  getTasks,
-  deleteTasks,
-  updateTask,
-} from "../lib/feedservice.js";
+// import {
+//   getTask,
+//   getTasks,
+//   deleteTasks,
+//   updateTask,
+// } from "../lib/feedservice.js";
 
-//const db = firebase.firestore();
+//firebase.firestore();
 
 export default () => {
   const viewFeed = `
@@ -67,6 +73,7 @@ export default () => {
   divElemt.classList.add("position");
   divElemt.innerHTML = viewFeed;
 
+  //cerrar sesion
   const buttonLogOut = divElemt.querySelector("#buttonLogOut");
   buttonLogOut.addEventListener("click", logOutEvent);
 
@@ -81,9 +88,9 @@ export default () => {
     const description = taskForm["task-description"].value;
 
     if (!editStatus) {
-      const descriptionEdit = description;
-    } else {
       taskForm["btn-task-form"].innerText = "Guardar";
+    } else {
+      const description = description;
     }
 
     db.collection("task")
