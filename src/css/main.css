@@ -1,7 +1,7 @@
 body {
     background: rgba(242, 151, 5, 0.5);
     color: rgba(0, 0, 0, 0.87);
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: Roboto;
     margin: 0;
     padding: 0;
   }
@@ -42,3 +42,60 @@ footer{
   justify-content: flex-end;
   align-items: flex-end;
 }
+
+.logo-feed{
+width: 50px;
+height: 50px;
+}
+
+.card-body-primary{
+  border: solid #789356 5px;
+  border-radius: 10px;
+  border-width: 20px;
+  padding-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  outline: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px;
+  width: 500px;
+}
+
+#task-form{
+  width: 500px;
+  height: 220px;
+  left: 672px;
+  top: 176px;
+  background: rgba(120, 147, 86, 0.69);
+  border-radius: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-primary{
+  width: 80px;
+  height: 30px;
+  right: 124px;
+  top: calc(50% - 46px/2 - 132px);
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+#task-description{
+  width: 420px;
+  height: 130px;
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+}
+
