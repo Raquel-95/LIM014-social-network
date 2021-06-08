@@ -1,20 +1,49 @@
+/** @format */
+import { logOutEvent } from "../firebase/firebasecontroller.js";
 import {
-  getTask,
   getTasks,
+  getTask,
   deleteTasks,
   updateTask,
-} from '../lib/feedservice.js';
+} from "../lib/feedservice.js";
+// export default () => {
+//   const contenidoFeed = `
+//   <div id="Pantalla">
+//   <div id="cabecera">
+//   <img id="imageProfile" src='images/user.png'/>
+//        <button type="submit" id="buttonLogout">Cerrar sesión</button>
+//  </div>
+//   <div class="prepost">
+//    <input type="text" placeholder="¿Que conoceremos hoy?" id="postUser">
+//    <button type="submit" id="sendPost">Publicar</button>
+//    </div>
+//   <div id="tabla"></div>
+//   </div>`;
 
-const db = firebase.firestore();
+//   const divElem = document.createElement("div");
+//   divElem.innerHTML = contenidoFeed;
+
+//   return divElem;
+// };
+
+// import {
+//   getTask,
+//   getTasks,
+//   deleteTasks,
+//   updateTask,
+// } from "../lib/feedservice.js";
+
+//firebase.firestore();
 
 export default () => {
   const viewFeed = `
-  <figure>
-    <img class="logo-feed" src="img\\logo.png" alt="logo">
-  <figure>
-
+<div id="cabecera">
+      <img id="imageProfile" src='images/user.png'/>
+       <button type="submit" id="buttonLogOut">Cerrar sesión</button>
+    </div>
   <div class="container p-4">
   <div class="row">
+    
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
@@ -38,52 +67,56 @@ export default () => {
     <!-- Tasks List -->
     <div class="col-md-6" id="tasks-container"></div>
   </div>
-</div>
-     `;
+</div>`;
 
-  const divElemt = document.createElement('div');
-  divElemt.classList.add('position');
+  const divElemt = document.createElement("div");
+  divElemt.classList.add("position");
   divElemt.innerHTML = viewFeed;
 
-  const taskForm = divElemt.querySelector('#task-form');
+  //cerrar sesion
+  const buttonLogOut = divElemt.querySelector("#buttonLogOut");
+  buttonLogOut.addEventListener("click", logOutEvent);
+
+  const taskForm = divElemt.querySelector("#task-form");
 
   const editStatus = false;
 
   listPost(divElemt, taskForm);
 
-  taskForm.addEventListener('submit', (e) => {
+  taskForm.addEventListener("submit", (e) => {
     e.preventDefault(); // cancelar que se refresque la pagina
-    const description = taskForm['task-description'].value;
+    const description = taskForm["task-description"].value;
 
     if (!editStatus) {
-      const descriptionEdit = description;
+      taskForm["btn-task-form"].innerText = "Guardar";
     } else {
-      taskForm['btn-task-form'].innerText = 'Guardar';
+      const description = description;
     }
 
-    db.collection('task').doc().set({
-      description,
-    }).then(() => {
-      listPost(divElemt, taskForm);
-    })
+    db.collection("task")
+      .doc()
+      .set({
+        description,
+      })
+      .then(() => {
+        listPost(divElemt, taskForm);
+      })
       .catch((p) => {
-        console.log('error', p);
+        console.log("error", p);
       });
     taskForm.reset();
   });
 
-  return divElemt;
-};
+  async function listPost(divElemt, taskForm) {
+    const taskConteiner = divElemt.querySelector("#tasks-container");
+    taskConteiner.innerHTML = "";
 
-async function listPost(divElemt, taskForm) {
-  const taskConteiner = divElemt.querySelector('#tasks-container');
-  taskConteiner.innerHTML = '';
-
-  getTasks().then((list) => {
-    list.forEach((doc) => {
-      const task = doc.data();
-      task.id = doc.id;
-      taskConteiner.innerHTML += `<div class="card-body-primary">
+    getTasks()
+      .then((list) => {
+        list.forEach((doc) => {
+          const task = doc.data();
+          task.id = doc.id;
+          taskConteiner.innerHTML += `<div class="card-body-primary">
       ${doc.data().description}
       <div class="buttons">
         <button class="btn btn-delete" data-id="${task.id}">Eliminar</button>
@@ -91,24 +124,27 @@ async function listPost(divElemt, taskForm) {
       </div>
     </div>`;
 
-      const buttonDelete = document.querySelectorAll('.btn-delete');
-      buttonDelete.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          deleteTasks(e.target.dataset.id);
-          listPost(divElemt, taskForm);
-        });
-      });
-      const buttonEdit = document.querySelectorAll('.btn-edit');
-      buttonEdit.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          getTask(e.target.dataset.id).then((k) => {
-            listPost(divElemt, taskForm);
-            taskForm['task-description'].value = k.data().description;
+          const buttonDelete = document.querySelectorAll(".btn-delete");
+          buttonDelete.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              deleteTasks(e.target.dataset.id);
+              listPost(divElemt, taskForm);
+            });
+          });
+          const buttonEdit = document.querySelectorAll(".btn-edit");
+          buttonEdit.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              getTask(e.target.dataset.id).then((k) => {
+                listPost(divElemt, taskForm);
+                taskForm["task-description"].value = k.data().description;
+              });
+            });
           });
         });
+      })
+      .catch((error) => {
+        console.log("Falló algo", error);
       });
-    });
-  }).catch((error) => {
-    console.log('Falló algo', error);
-  });
-}
+  }
+  return divElemt;
+};

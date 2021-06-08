@@ -1,0 +1,76 @@
+/** @format */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+footer {
+  position: absolute;
+}
+
+#inicio-sesion {
+  margin: 0;
+  padding: 0;
+}
+.pantalla1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 720px;
+  height: 1024px;
+  background: rgba(242, 151, 5, 0.5);
+  float: left;
+}
+
+.logotipo {
+  justify-content: center;
+  align-items: center;
+}
+.logotipo img {
+  width: 700px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f545;
+  height: 1024px;
+  margin: 0;
+  padding: 0;
+  clear: left;
+}
+
+.registrate {
+  display: flex;
+  margin: 15px auto !important;
+  width: 80%;
+  justify-content: center;
+}
+
+.google {
+  margin: 10px 0px;
+}
+
+.google img {
+  margin: 0px 5px;
+  width: 50px;
+}
