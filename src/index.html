@@ -7,9 +7,7 @@
   <link rel="stylesheet" href="css\\main.css">
   <title>RutaRixsiy</title>
 </head>
-
 <body>
-
   <header> </header> 
     <nav>
       <ul class="menu">
@@ -22,9 +20,15 @@
       </ul>
     </nav>
     <p>Conociendo tu ruta favorita</p>
-    <!-- SDK FIREBASE -->
+
+    <section id="container"></section>
+
+    <!-- -------------------------------FIREBASE-------------------------------------- -->
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+    <!-- ----------------------------CONFIGURACION FB---------------------------------- -->
     <script>
       var firebaseConfig = {
         apiKey: "AIzaSyBCnQxYROWcew2i8r5BSP4NLn-CBI4-lcU",
@@ -34,13 +38,12 @@
         messagingSenderId: "214042096683",
         appId: "1:214042096683:web:150c7115fb1eb6ca01e66e",
         measurementId: "G-4C8JL478YZ"
-        };
+      };
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script>
-<!-- SDK FIREBASE -->
 
   <script type="module" src="main.js"></script>
-<footer>© RUTA RIXSIY. All rights reserved 2021. G - R.</footer>
+<footer class="footer">© RUTA RIXSIY. All rights reserved 2021. G - R.</footer>
 </body>
 </html>
