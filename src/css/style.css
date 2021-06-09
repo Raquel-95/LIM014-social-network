@@ -5,36 +5,49 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   margin: 0;
   padding: 0;
-}
-.container {
+} */
+/* .container {
   margin: 0;
   padding: 0;
   display: flex;
-}
+} */
 
-main {
+/* main {
   margin: 0;
   padding: 0;
   position: absolute;
+} */
+
+#main_screen {
+  display: flex;
+  height: 100%;
 }
 
+h2 {
+  font-size: 45px;
+}
+
+#errorMessage {
+  color: red;
+}
 footer {
   position: absolute;
 }
 
-#inicio-sesion {
+/* #inicio-sesion {
   margin: 0;
   padding: 0;
-}
+} */
+
 .pantalla1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 720px;
-  height: 1024px;
+  width: 800px;
+  height: 755px;
   background: rgba(242, 151, 5, 0.5);
   float: left;
 }
@@ -43,8 +56,9 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
 .logotipo img {
-  width: 700px;
+  width: 500px;
 }
 
 .form {
@@ -52,11 +66,33 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f545;
-  height: 1024px;
+  background: white;
+  height: auto;
+  width: 800px;
   margin: 0;
   padding: 0;
   clear: left;
+  font-size: 18px;
+  font-family: roboto;
+}
+
+.input_form {
+  background: #FFE0B2;
+  mix-blend-mode: normal;
+  border: 3px solid #FDD835;
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+}
+
+#buttonSignIn {
+  background: #789356;
+  border: 3px solid #789356;
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .registrate {
@@ -66,11 +102,8 @@ footer {
   justify-content: center;
 }
 
-.google {
-  margin: 10px 0px;
-}
-
-.google img {
-  margin: 0px 5px;
-  width: 50px;
+#signGoogle {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }

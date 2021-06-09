@@ -28,10 +28,10 @@ import {
 
 export default () => {
   const viewFeed = `
-<div id="cabecera">
-      <img id="imageProfile" src='images/user.png'/>
-       <button type="submit" id="buttonLogOut">Cerrar sesión</button>
-    </div>
+  <div id="cabecera">
+    <img id="imageProfile" src='images/user.png'/>
+    <button type="submit" id="buttonLogOut">Cerrar sesión</button>
+  </div>
   <div class="container p-4">
   <div class="row">
     
@@ -79,9 +79,9 @@ export default () => {
     const description = taskForm["task-description"].value;
 
     if (!editStatus) {
-      taskForm["btn-task-form"].innerText = "Guardar";
+    taskForm['btn-task-form'].innerText = 'Guardar';
     } else {
-      const description = description;
+      console.log('cambio de boton', description);
     }
 
     db.collection("task")
