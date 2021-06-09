@@ -1,49 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css\\main.css">
-  <title>RutaRixsiy</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <title>Ruta Rixsiy</title>
 </head>
+
 <body>
-  <header> </header> 
-    <nav>
-      <ul class="menu">
-        <li class="container-link">
-          <a class="link" href="#/login">Log in</a>
-        </li>
-        <li class="container-link">
-          <a class="link" href="#/feed">Feed</a>
-        </li>
-      </ul>
-    </nav>
-    <p>Conociendo tu ruta favorita</p>
+  <div class="container">
+    <main id="container"></main>
+    <footer>
+      © 2021
+    </footer>
+  </div>
 
-    <section id="container"></section>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
 
-    <!-- -------------------------------FIREBASE-------------------------------------- -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
 
-    <!-- ----------------------------CONFIGURACION FB---------------------------------- -->
-    <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyBCnQxYROWcew2i8r5BSP4NLn-CBI4-lcU",
-        authDomain: "ruta-rixsiy.firebaseapp.com",
-        projectId: "ruta-rixsiy",
-        storageBucket: "ruta-rixsiy.appspot.com",
-        messagingSenderId: "214042096683",
-        appId: "1:214042096683:web:150c7115fb1eb6ca01e66e",
-        measurementId: "G-4C8JL478YZ"
-      };
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
 
   <script type="module" src="main.js"></script>
-<footer class="footer">© RUTA RIXSIY. All rights reserved 2021. G - R.</footer>
+
+
+
 </body>
+
 </html>

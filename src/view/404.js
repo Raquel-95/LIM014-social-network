@@ -1,12 +1,10 @@
-export default () => {
-  const viewDifferent = `
-            <h2>404</h2>
-            <h1>Página no encontrada</h1>
-            <p>El archivo especificado no se encontró en este sitio web. Por favor, compruebe la URL para errores y vuelva a intentarlo.</p>
-          `;
+/** @format */
 
-  const divElemt = document.createElement('div');
-  divElemt.setAttribute('id', 'message');
-  divElemt.innerHTML = viewDifferent;
-  return divElemt;
+export default () => {
+  const viewSession = `
+  <h2 class="text-center">¡Pagina no encontrada!</h2>
+  <p>No se encuebtra la url</p>`;
+  const divElem = document.createElement("div");
+  divElem.innerHTML = viewSession;
+  return divElem;
 };
