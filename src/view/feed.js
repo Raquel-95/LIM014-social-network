@@ -26,15 +26,6 @@ import {
 //   return divElem;
 // };
 
-// import {
-//   getTask,
-//   getTasks,
-//   deleteTasks,
-//   updateTask,
-// } from "../lib/feedservice.js";
-
-//firebase.firestore();
-
 export default () => {
   const viewFeed = `
 <div id="cabecera">
