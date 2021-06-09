@@ -1,11 +1,6 @@
 /** @format */
-import { logOutEvent } from "../firebase/firebasecontroller.js";
-import {
-  getTasks,
-  getTask,
-  deleteTasks,
-  updateTask,
-} from "../lib/feedservice.js";
+import { logOutEvent } from '../firebase/firebasecontroller.js';
+import { getTasks, getTask, deleteTasks } from '../lib/feedservice.js';
 // export default () => {
 //   const contenidoFeed = `
 //   <div id="Pantalla">
@@ -25,15 +20,6 @@ import {
 
 //   return divElem;
 // };
-
-// import {
-//   getTask,
-//   getTasks,
-//   deleteTasks,
-//   updateTask,
-// } from "../lib/feedservice.js";
-
-//firebase.firestore();
 
 export default () => {
   const viewFeed = `
@@ -69,47 +55,21 @@ export default () => {
   </div>
 </div>`;
 
-  const divElemt = document.createElement("div");
-  divElemt.classList.add("position");
+  const divElemt = document.createElement('div');
+  divElemt.classList.add('position');
   divElemt.innerHTML = viewFeed;
 
-  //cerrar sesion
-  const buttonLogOut = divElemt.querySelector("#buttonLogOut");
-  buttonLogOut.addEventListener("click", logOutEvent);
+  // cerrar sesion
+  const buttonLogOut = divElemt.querySelector('#buttonLogOut');
+  buttonLogOut.addEventListener('click', logOutEvent);
 
-  const taskForm = divElemt.querySelector("#task-form");
+  const taskForm = divElemt.querySelector('#task-form');
 
   const editStatus = false;
 
-  listPost(divElemt, taskForm);
-
-  taskForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // cancelar que se refresque la pagina
-    const description = taskForm["task-description"].value;
-
-    if (!editStatus) {
-    taskForm['btn-task-form'].innerText = 'Guardar';
-    } else {
-      console.log('cambio de boton', description);
-    }
-
-    db.collection("task")
-      .doc()
-      .set({
-        description,
-      })
-      .then(() => {
-        listPost(divElemt, taskForm);
-      })
-      .catch((p) => {
-        console.log("error", p);
-      });
-    taskForm.reset();
-  });
-
   async function listPost(divElemt, taskForm) {
-    const taskConteiner = divElemt.querySelector("#tasks-container");
-    taskConteiner.innerHTML = "";
+    const taskConteiner = divElemt.querySelector('#tasks-container');
+    taskConteiner.innerHTML = '';
 
     getTasks()
       .then((list) => {
@@ -124,27 +84,55 @@ export default () => {
       </div>
     </div>`;
 
-          const buttonDelete = document.querySelectorAll(".btn-delete");
+          const buttonDelete = document.querySelectorAll('.btn-delete');
           buttonDelete.forEach((btn) => {
-            btn.addEventListener("click", (e) => {
+            btn.addEventListener('click', (e) => {
               deleteTasks(e.target.dataset.id);
               listPost(divElemt, taskForm);
+              console.log('click');
             });
           });
-          const buttonEdit = document.querySelectorAll(".btn-edit");
+          const buttonEdit = document.querySelectorAll('.btn-edit');
           buttonEdit.forEach((btn) => {
-            btn.addEventListener("click", (e) => {
+            btn.addEventListener('click', (e) => {
               getTask(e.target.dataset.id).then((k) => {
                 listPost(divElemt, taskForm);
-                taskForm["task-description"].value = k.data().description;
+                taskForm['task-description'].value = k.data().description;
               });
             });
           });
         });
       })
       .catch((error) => {
-        console.log("Falló algo", error);
+        console.log('Falló algo', error);
       });
   }
+  listPost(divElemt, taskForm);
+
+  taskForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // cancelar que se refresque la pagina
+    const description = taskForm['task-description'].value;
+
+    if (!editStatus) {
+      taskForm['btn-task-form'].innerText = 'Guardar';
+    } else {
+      console.log('cambio de boton', description);
+    }
+
+    firebase
+      .firestore()
+      .collection('task')
+      .doc()
+      .set({
+        description,
+      })
+      .then(() => {
+        listPost(divElemt, taskForm);
+      })
+      .catch((p) => {
+        console.log('error', p);
+      });
+    taskForm.reset();
+  });
   return divElemt;
 };
