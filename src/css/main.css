@@ -56,13 +56,14 @@ footer {
 
 #buttonLogOut {
   margin-right: 30px;
-  background-color: #739356;
+  background-color: rgba(120, 147, 86, 0.69);
   font-size: 18px;
-  font-family: roboto;
   width: 130px;
   height: 50px;
   border-radius: 20px;
   border-color: #739356;
+  color: whitesmoke;
+  cursor: pointer;
 }
 
 #main-feed {
@@ -74,11 +75,11 @@ footer {
 }
 
 .card-body-primary {
-  border: solid #789356 5px;
+  border: solid rgba(120, 147, 86, 0.69) 5px;
   border-radius: 10px;
   border-width: 20px;
   padding-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.637);
   outline: 10px;
   display: flex;
   flex-direction: column;
