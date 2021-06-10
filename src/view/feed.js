@@ -23,8 +23,9 @@ import { getTasks, getTask, deleteTasks } from '../lib/feedservice.js';
 
 export default () => {
   const viewFeed = `
-  <div id="cabecera">
-    <img id="imageProfile" src='images/user.png'/>
+  <div id="main-feed">
+    <img id="imageProfile" src='img/user.png'/>
+    <img class="logo-feed" src='img/logo.png' alt="logo">
     <button type="submit" id="buttonLogOut">Cerrar sesión</button>
   </div>
   <div class="container p-4">
@@ -34,7 +35,7 @@ export default () => {
       <div class="card">
         <div class="card-body">
 
-          <h1 class="h4">¡Publica algo sobre tus rutas!</h1>
+        </br></br><h1 class="h4">¡Publica algo sobre tus rutas!</h1></br></br>
 
           <form id="task-form">
             
@@ -66,6 +67,32 @@ export default () => {
   const taskForm = divElemt.querySelector('#task-form');
 
   const editStatus = false;
+
+  listPost(divElemt, taskForm);
+
+  taskForm.addEventListener("submit", (e) => {
+    e.preventDefault(); // cancelar que se refresque la pagina
+    const description = taskForm["task-description"].value;
+
+    if (!editStatus) {
+      console.log('cambio de boton', description);
+    } else {
+      taskForm['btn-task-form'].innerText = 'Guardar'
+    }
+
+  firebase.firestore().collection("task")
+      .doc()
+      .set({
+        description,
+      })
+      .then(() => {
+        listPost(divElemt, taskForm);
+      })
+      .catch((p) => {
+        console.log("error", p);
+      });
+    taskForm.reset();
+  });
 
   async function listPost(divElemt, taskForm) {
     const taskConteiner = divElemt.querySelector('#tasks-container');

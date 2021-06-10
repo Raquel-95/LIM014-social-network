@@ -14,3 +14,4 @@ export const loginGoogle = () => {
 };
 // para cerrar sesion
 export const logOut = () => firebase.auth().signOut();
+
