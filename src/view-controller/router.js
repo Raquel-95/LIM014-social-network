@@ -14,6 +14,7 @@ const changeView = (route) => {
       return container.appendChild(components.registro());
     }
     case "#/feed": {
+      container.appendChild(components.header());
       return container.appendChild(components.feed());
     }
     default:

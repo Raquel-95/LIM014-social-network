@@ -19,6 +19,17 @@ import {
   logOut,
 } from '../src/firebase/auth';
 
+
+// MOCK MANUAL DE PUBLICACIONES
+
+import MockFirebase from '../__mocks__/firebase-mock.js';
+
+//para poder utilizarlo aquí, ejecutamos
+global.firebase = MockFirebase(); // todas las declaraciones que digan firebase van a ser reemplazadas por el mock creado.
+
+import { createUserAccount, loginUser, loginGoogle, logOut } from '../src/firebase/auth.js';
+
+
 const mockauth = new firebasemock.MockAuthentication();
 mockauth.autoFlush();
 const mocksdk = new firebasemock.MockFirebaseSdk(
@@ -77,13 +88,5 @@ describe('logOut', () => {
     logOut().then((user) => {
       expect(user).toBe(null);
     });
-
-// MOCK MANUAL DE PUBLICACIONES
-
-import MockFirebase from '../__mocks__/firebase-mock.js';
-
-//para poder utilizarlo aquí, ejecutamos
-global.firebase = MockFirebase(); // todas las declaraciones que digan firebase van a ser reemplazadas por el mock creado.
-
-import { createUserAccount, loginUser, loginGoogle, logOut } from '../src/firebase/auth.js';
-
+  });
+});

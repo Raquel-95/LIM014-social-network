@@ -89,7 +89,14 @@ footer {
   width: 500px;
 }
 
-#task-form {
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#post-form {
   width: 500px;
   height: 220px;
   left: 672px;
@@ -112,7 +119,7 @@ footer {
   font-size: 15px;
 }
 
-#task-description {
+#post-description {
   width: 420px;
   height: 130px;
   margin: 20px;
@@ -123,4 +130,12 @@ footer {
 .buttons {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ocultar la caja del id para editar  */
+#id-post {
+  display: none;
 }
