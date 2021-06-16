@@ -1,11 +1,12 @@
 /** @format */
 
-export const getTasks = () => firebase.firestore().collection("post").get();
+export const getPosts = () => firebase.firestore().collection("post").get();
 
-export const getTask = (id) => firebase.firestore().collection("post").doc(id).get();
+export const getPost = (id) => firebase.firestore().collection("post").doc(id).get();
 
-export const deleteTasks = (id) => firebase.firestore().collection("post").doc(id).delete();
+export const deletePosts = (id) => firebase.firestore().collection("post").doc(id).delete();
 
-export const updateTask = (id, updatedTask) => firebase.firestore().collection("post").doc(id).update({'description': updatedTask});
+export const updatePost = (id, updatedpost) => firebase.firestore().collection("post").doc(id).update({'description': updatedpost});
 
-export const publishPost = (content) => firebase.firestore().collection('post').doc().set({ 'description': content })
+export const publishPost = (idUser, content) => firebase.firestore().collection('post').doc().set(
+    { 'idUser': idUser, 'description': content })
