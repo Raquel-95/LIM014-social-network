@@ -139,3 +139,9 @@ footer {
 #id-post {
   display: none;
 }
+
+/* like */
+.like {
+  width: 30px;
+  height: 30px;
+}

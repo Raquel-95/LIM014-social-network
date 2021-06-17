@@ -1,19 +1,21 @@
 /** @format */
 
-export const getTasks = () => firebase.firestore().collection('post').get();
+export const addPost = () => firebase.firestore().collection('post')
+  .add({
+    timePost: new Date().toLocaleString('UMT-0500'),
+    likes: [],
+  });
 
-export const getTask = (id) =>
-  firebase.firestore().collection('post').doc(id).get();
 
-export const deleteTasks = (id) =>
-  firebase.firestore().collection('post').doc(id).delete();
+export const getPosts = () => firebase.firestore().collection("post").get();
 
-export const updateTask = (id, updatedTask) =>
-  firebase
-    .firestore()
-    .collection('post')
-    .doc(id)
-    .update({ description: updatedTask });
+export const getPost = (id) => firebase.firestore().collection("post").doc(id).get();
 
-export const publishPost = (content) =>
-  firebase.firestore().collection('post').doc().set({ description: content });
+export const deletePosts = (id) => firebase.firestore().collection("post").doc(id).delete();
+
+export const updatePost = (id, updatedpost) => firebase.firestore().collection("post").doc(id).update({'description': updatedpost});
+
+export const publishPost = (idUser, content) => firebase.firestore().collection('post').doc().set(
+    { 'idUser': idUser, 'description': content })
+
+export const likesPost = (id, likes) => firebase.firestore().collection('post').doc(id).update({ likes });
