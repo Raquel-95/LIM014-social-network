@@ -2,10 +2,10 @@
 import {
   loginUserEvent,
   loginGoogleEvent,
-} from "../firebase/firebasecontroller.js";
+} from '../firebase/firebasecontroller.js';
 
 export default () => {
-  const viewSesion = `
+  const viewSesion = /*html*/ `
   <div id="main_screen">
     <div id="inicio-sesion">
       <div class="pantalla1">
@@ -23,20 +23,20 @@ export default () => {
       <div class="registrate"><p>¿No tienes una cuenta?</p><a href="#/registro">Regístrate</a></div>
     </div>
   </div>`;
-  const divElem = document.createElement("div");
+  const divElem = document.createElement('div');
   divElem.innerHTML = viewSesion;
 
-  const buttonSignIn = divElem.querySelector("#buttonSignIn");
-  const errorContainer = divElem.querySelector("#errorMessage");
-  const buttonGoogle = divElem.querySelector("#signGoogle");
+  const buttonSignIn = divElem.querySelector('#buttonSignIn');
+  const errorContainer = divElem.querySelector('#errorMessage');
+  const buttonGoogle = divElem.querySelector('#signGoogle');
 
-  buttonSignIn.addEventListener("click", () => {
-    const usuarioSignIn = divElem.querySelector("#usuarioSignIn").value;
-    const passwordSignIn = divElem.querySelector("#contraseñaSignIn").value;
+  buttonSignIn.addEventListener('click', () => {
+    const usuarioSignIn = divElem.querySelector('#usuarioSignIn').value;
+    const passwordSignIn = divElem.querySelector('#contraseñaSignIn').value;
     loginUserEvent(usuarioSignIn, passwordSignIn, errorContainer);
-    console.log("aqui");
+    console.log('aqui');
   });
-  buttonGoogle.addEventListener("click", (e) => {
+  buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     loginGoogleEvent();
   });

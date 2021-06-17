@@ -1,9 +1,9 @@
 /** @format */
-import { createUserAccount } from "../firebase/auth.js";
-import { loginUserEvent } from "../firebase/firebasecontroller.js";
+import { createUserAccount } from '../firebase/auth.js';
+import { loginUserEvent } from '../firebase/firebasecontroller.js';
 
 export default () => {
-  const viewRegistro = `
+  const viewRegistro = /*html*/ `
   <div id="Registro">
     <div class="pantalla1">
     <div class="logotipo"><img src="img/logo.png" ></div>
@@ -19,28 +19,28 @@ export default () => {
   </div>
   </div>`;
 
-  const divElem = document.createElement("div");
+  const divElem = document.createElement('div');
   divElem.innerHTML = '';
   divElem.innerHTML = viewRegistro;
 
-  const buttonSignUp = divElem.querySelector("#buttonSignUp");
-  buttonSignUp.addEventListener("click", () => {
-    const userNameSignUp = divElem.querySelector("#displayName").value;
-    const usuarioSignUp = divElem.querySelector("#usuarioSignUp").value;
-    const passwordSignUp = divElem.querySelector("#contraseñaSignUp").value;
+  const buttonSignUp = divElem.querySelector('#buttonSignUp');
+  buttonSignUp.addEventListener('click', () => {
+    const userNameSignUp = divElem.querySelector('#displayName').value;
+    const usuarioSignUp = divElem.querySelector('#usuarioSignUp').value;
+    const passwordSignUp = divElem.querySelector('#contraseñaSignUp').value;
 
     createUserAccount(usuarioSignUp, passwordSignUp)
       .then((userCredential) =>
         userCredential.user.updateProfile({
           displayName: userNameSignUp,
-          photoURL: "images/user.png",
+          photoURL: 'img/user.png',
         })
       )
       .then(() => {
         loginUserEvent(usuarioSignUp, passwordSignUp);
       })
       .catch((error) => {
-        const errorContainer = divElem.querySelector("#errorMessage");
+        const errorContainer = divElem.querySelector('#errorMessage');
         const templateError = `<div class ="modal-error"><p>Hubo un problema:${error}</p></div>`;
         errorContainer.innerHTML = templateError;
       });

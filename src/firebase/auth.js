@@ -15,3 +15,16 @@ export const loginGoogle = () => {
 // para cerrar sesion
 export const logOut = () => firebase.auth().signOut();
 
+//Administrar usuarios
+
+let currentUser = {};
+
+export const getCurrentUser = () => currentUser;
+
+export const findAuth = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      currentUser = user;
+    }
+  });
+};
