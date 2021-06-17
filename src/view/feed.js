@@ -1,5 +1,5 @@
 /** @format */
-import { getPosts, getPost, deletePosts, updatePost, publishPost } from '../lib/feedservice.js';
+import { getPosts, getPost, deletePosts, updatePost, publishPost, likesPost } from '../lib/feedservice.js';
 
 export default () => {
   const viewFeed = `
@@ -22,7 +22,6 @@ export default () => {
             <button class='btn btn-primary' id='btn-post-form' disabled>
               Publicar
             </button>
-
           </form>
         </div>
       </div>
@@ -41,13 +40,12 @@ export default () => {
   firebase.auth().onAuthStateChanged(function (user) { // onAuthStateChanged es un evento asincrono.
     idUser = user.uid;
   });
-  
+
   const postForm = divElemt.querySelector('#post-form');
 
   listPost(divElemt);
 
-  // const textPost = divElemt.querySelector('#post-description');
-
+  // Desactiva el boton de publicar cuando esta vacio y se activa al presionar una tecla.
   postForm['post-description'].addEventListener('keyup', (event) => {
     let buttonPublicar = document.querySelector("#btn-post-form");
     if (event.target.value === '') {
@@ -57,17 +55,18 @@ export default () => {
     }
   });
 
-
+  // Envio del formulario
   postForm.addEventListener('submit', (e) => {
     e.preventDefault(); // cancelar que se refresque la pagina
     const description = postForm['post-description'].value;
     const idPost = postForm['id-post'].value;
 
+    // para una publicacion nueva
     if (idPost === '') {
       publishPost(idUser, description).then(() => {
         listPost(divElemt);
       })
-    } else {
+    } else { // para una publicacion existente
       updatePost(idPost, description).then(() => {
         postForm['id-post'].value = '';
         postForm['btn-post-form'].innerHTML = 'Publicar';
@@ -80,7 +79,6 @@ export default () => {
 
 
   function listPost(divElemt) {
-    // console.log("listPost");
     const postForm = divElemt.querySelector('#post-form');
     const postContainer = divElemt.querySelector('#posts-container');
     postContainer.innerHTML = '';
@@ -91,18 +89,23 @@ export default () => {
           const post = doc.data();
           post.id = doc.id;
 
-          console.log("uuid " + idUser + " " + doc.data().idUser)
+      // Para que los botones de eliminar y editar esten solo en mis publicaciones y el like para todos.
+          // console.log("uuid " + idUser + " " + doc.data().idUser)
           if (idUser !== doc.data().idUser) {
             postContainer.innerHTML += `<div class='card-body-primary'>
-            ${doc.data().description}`
-            return;
-          }
+            ${doc.data().description}
+              <div class='buttons'>
+              <img src='./img/like.png' class='like' data-id='${post.id}'></img>
+              </div>
+            </div>`;
 
-          postContainer.innerHTML += `<div class='card-body-primary'>
+          }else{
+            postContainer.innerHTML += `<div class='card-body-primary'>
             ${doc.data().description}
               <div class='buttons'>
               <button class='btn btn-delete' data-id='${post.id}'>Eliminar</button>
               <button class='btn btn-edit' data-id='${post.id}'>Editar</button>
+              <img src='./img/like.png' class='like' data-id='${post.id}'></img>
               </div>
             </div>`;
 
@@ -115,8 +118,6 @@ export default () => {
                   listPost(divElemt);
                 });
               }
-
-              console.log('click');
             });
           });
           const buttonEdit = document.querySelectorAll('.btn-edit');
@@ -128,6 +129,22 @@ export default () => {
                 postForm['id-post'].value = e.target.dataset.id;
                 postForm['btn-post-form'].innerHTML = 'guardar';
               });
+            });
+          });
+          }
+
+      // Likes 
+          const likes = document.querySelectorAll('.like');
+          likes.forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const result = objPost.likes.indexOf(idUser);
+              if (result === -1) {
+                objPost.likes.push(idUser);
+                likePost(objPost.id, objPost.likes);
+              } else {
+                objPost.likes.splice(result, 1);
+                likePost(objPost.id, objPost.likes);
+              }
             });
           });
         });
