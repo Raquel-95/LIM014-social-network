@@ -4,18 +4,18 @@ import { loginUserEvent } from '../firebase/firebasecontroller.js';
 
 export default () => {
   const viewRegistro = /*html*/ `
-  <div id="Registro">
-    <div class="pantalla1">
-    <div class="logotipo"><img src="img/logo.png" ></div>
+  <div id='Registro'>
+    <div class='pantalla1'>
+    <div class='logotipo'><img src='img/logo.png' ></div>
     </div>
-  <div class="form" id="form-register">
-    <h2 class="styleH2">¡Se parte de esta comunidad!</h2></br></br>
-    <input type="text" placeholder="Nombre" id="displayName" class="input-register"></br>
-    <input type="text" placeholder="Correo electrónico" id="usuarioSignUp" class="input-register"></br>
-    <input type="text" placeholder="Contraseña" id="contraseñaSignUp" class="input-register"></br></br>
-    <button type="submit" id="buttonSignUp">Registrate</button></br></br>
-    <div id="errorMessage"></div></br>
-    <div class="iniciaSesion"><p>¿Ya tienes una cuenta?</p><a href="#/">Inicia Sesión</a></div>
+  <div class='form' id='form-register'>
+    <h2 class='styleH2'>¡Se parte de esta comunidad!</h2></br></br>
+    <input type='text' placeholder='Nombre' id='displayName' class='input-register'></br>
+    <input type='text' placeholder='Correo electrónico' id='usuarioSignUp' class='input-register'></br>
+    <input type='text' placeholder='Contraseña' id='contraseñaSignUp' class='input-register'></br></br>
+    <button type='submit' id='buttonSignUp'>Registrate</button></br></br>
+    <div id='errorMessage'></div></br>
+    <div class='iniciaSesion'><p>¿Ya tienes una cuenta?</p><a href='#/'>Inicia Sesión</a></div>
   </div>
   </div>`;
 
@@ -41,7 +41,7 @@ export default () => {
       })
       .catch((error) => {
         const errorContainer = divElem.querySelector('#errorMessage');
-        const templateError = `<div class ="modal-error"><p>Hubo un problema:${error}</p></div>`;
+        const templateError = `<div class ='modal-error'><p>Hubo un problema:${error}</p></div>`;
         errorContainer.innerHTML = templateError;
       });
   });

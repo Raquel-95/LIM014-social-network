@@ -119,7 +119,7 @@ qual seja possível **ler e escrever dados.**
   programming_. Uma das melhores formas de aprender é explicar verbalmente.
 
 * Está sentindo dificuldade e para você é mais difícil de avançar? Não fique com
-  as partes "fáceis" do projeto. Converse, negocie, busque sua oportunidade de
+  as partes 'fáceis' do projeto. Converse, negocie, busque sua oportunidade de
   praticar e aprender o que é mais difícil para você.
 
 * Vocês apenas poderão trabalhar em uma história por vez. Não avancem para a
@@ -255,9 +255,9 @@ forma, você pode aprofundar e/ou exercitar mais os objetivos de aprendizagem do
 projeto.
 
 * Criar posts com imagens.
-* Procurar usuários, adicionar e excluir "amigos".
+* Procurar usuários, adicionar e excluir 'amigos'.
 * Definir a privacidade de _posts_ (público ou apenas para amigos).
-* Permitir ver na linha do tempo de usuários "não amigos" apenas os posts
+* Permitir ver na linha do tempo de usuários 'não amigos' apenas os posts
   públicos.
 * Permitir comentar ou responder a uma postagem.
 * Editar perfil.

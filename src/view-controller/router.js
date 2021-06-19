@@ -1,19 +1,19 @@
 /** @format */
 
-import { components } from "../view/index.js";
+import { components } from '../view/index.js';
 
 const changeView = (route) => {
-  const container = document.getElementById("container");
-  container.innerHTML = "";
+  const container = document.getElementById('container');
+  container.innerHTML = '';
   switch (route) {
-    case "":
-    case "#/": {
+    case '':
+    case '#/': {
       return container.appendChild(components.sesion());
     }
-    case "#/registro": {
+    case '#/registro': {
       return container.appendChild(components.registro());
     }
-    case "#/feed": {
+    case '#/feed': {
       container.appendChild(components.header());
       return container.appendChild(components.feed());
     }

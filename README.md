@@ -33,7 +33,7 @@ o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
 [Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
 
 Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
-acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
+acceso y loguearse con ella; crear, editar, borrar y _'likear'_ publicacciones.
 
 ## 3. Objetivos de aprendizaje
 
@@ -136,7 +136,7 @@ Event objeto, delegación de eventos)
     aprender es explicando verbalmente.
 
   - ¿Se te está haciendo difícil y te cuesta un poco más avanzar? No te quedes
-    con las partes "fáciles" del proyecto, conversa, negocia, exige tu oportunidad
+    con las partes 'fáciles' del proyecto, conversa, negocia, exige tu oportunidad
     para practicar y aprender lo que se te hace más difícil.
 
 * Solamente pueden trabajar en una única historia por vez, no pueden avanzar a
@@ -272,9 +272,9 @@ con todo lo anterior y te queda tiempo, intenta completarlas. Así podrás
 profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
 
 * Permite crear posts con imágenes.
-* Permite buscar usuarios, agregar y eliminar "amigos".
+* Permite buscar usuarios, agregar y eliminar 'amigos'.
 * Permite definir la privacidad de los _posts_ (público o solamente para amigos).
-* Permite ver su muro de cualquier usuario "no-amigo" (solamente los
+* Permite ver su muro de cualquier usuario 'no-amigo' (solamente los
   posts _públicos_).
 * Permite comentar o responder una publicación.
 * Permite editar perfil.

@@ -8,7 +8,7 @@ export const loginUserEvent = (user, password, errorContainer) => {
       window.location.assign('#/feed');
     })
     .catch((error) => {
-      const templateError = `<div class ="modal-error"><p>Hubo un problema:${error.message}</p></div>`;
+      const templateError = `<div class ='modal-error'><p>Hubo un problema:${error.message}</p></div>`;
       errorContainer.innerHTML = templateError;
     });
 };
