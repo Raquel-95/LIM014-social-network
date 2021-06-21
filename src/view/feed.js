@@ -1,36 +1,21 @@
 /** @format */
-import { getPosts, getPost, deletePosts, updatePost, publishPost, likesPost } from '../lib/feedservice.js';
-
+import {
+  getPosts,
+  getPost,
+  deletePosts,
+  updatePost,
+  publishPost,
+  likesPost,
+  update,
+} from '../lib/feedservice.js';
 import { getCurrentUser } from '../firebase/auth.js';
 
 export default () => {
   const viewFeed = /*html*/ `
 
   <div class='container p-4'>
-  
-  <div class='perfil-feed'>
-    <div id='imgPf'>
-      <img id='imageProfile' src='img/user.png'/>
-    </div>
-    <!-- profile -->
-    <div class='hide' id='modalProfile'>
-      <div class='modal'>
-        <h2>Profile</h2>
-        <div class='updateData'>
-          <input type='text' placeholder='Update name' name='name' id='nameUser' />
-          <input type='file' id='fotoUser' class='hide' />
-          <label for='fotoUser' id='selector' class='labelUpdatePhoto'> 
-          </label>
-          <div id='preview'></div>
-        </div>
-        <button id='updateButton'>Update</button>
-        <span id='modalClose' class='modalClose'>x</span>
-      </div>
-    </div>
-  </div>
-
   <div class='row'>
-
+    
     <div class='col-md-6'>
       <div class='card'>
         <div class='card-body'>
@@ -42,12 +27,32 @@ export default () => {
             <div class='form-group'>
               <textarea id='post-description' rows='3' class='form-control' placeholder='¿En qué estas pensando?'></textarea>
             </div>
-            <input type='text' id='id-post' value=''>
+            <input type="text" id="id-post" value="">
             <button class='btn btn-primary' id='btn-post-form' disabled>
               Publicar
             </button>
           </form>
         </div>
+      </div>
+      <!-- Tasks List -->
+      <div class='col-md-6' id='tasks-container'></div>
+    </div>
+    <div id="imgPf">
+      <img id="imageProfile" src='img/user.png'/>
+    </div>
+    <!-- profile -->
+    <div class="hide" id="modalProfile">
+      <div class="modal">
+        <h2>Profile</h2>
+        <div class="updateData">
+          <input type="text" placeholder="Update name" name="name" id="nameUser" />
+          <input type="file" id="fotoUser" class="hide" />
+          <label for="fotoUser" id="selector" class="labelUpdatePhoto"> 
+          </label>
+          <div id="preview"></div>
+        </div>
+        <button id="updateButton">Update</button>
+        <span id="modalClose" class="modalClose">x</span>
       </div>
     </div>
     <!-- posts List -->
@@ -61,7 +66,8 @@ export default () => {
 
   let idUser = '';
 
-  firebase.auth().onAuthStateChanged(function (user) { // onAuthStateChanged es un evento asincrono.
+  firebase.auth().onAuthStateChanged(function (user) {
+    // onAuthStateChanged es un evento asincrono.
     idUser = user.uid;
   });
 
@@ -71,11 +77,11 @@ export default () => {
   const fotoUser = divElemt.querySelector('#fotoUser');
   const output = divElemt.querySelector('#selector');
   const preview = divElemt.querySelector('#preview');
-  //const updateButton = divElemt.querySelector('#updateButton');
+  const updateButton = divElemt.querySelector('#updateButton');
 
   const loaderUpdate = (e) => {
     const file = e.target.files;
-    const show = `<span class='fileSelected'>Selected file: </span> ${file[0].name}`;
+    const show = `<span class="fileSelected">Selected file: </span> ${file[0].name}`;
     output.innerHTML = show;
 
     const reader = new FileReader();
@@ -97,7 +103,7 @@ export default () => {
     modalProfile.classList.add('display');
     modalProfile.classList.add('modalProfile');
     modalProfile.classList.remove('hide');
-    const show = `<span class='material-icons'>add_photo_alternate</span>
+    const show = `<span class="material-icons">add_photo_alternate</span>
     Choose a photo`;
     output.innerHTML = show;
     const img = document.createElement('img');
@@ -107,6 +113,16 @@ export default () => {
     } else {
       preview.append(img);
     }
+  });
+
+  updateButton.addEventListener('click', () => {
+    const imgUpload = fotoUser.files[0];
+    const nameUser = divElemt.querySelector('#nameUser').value;
+    update.updateImage(imgUpload, nameUser);
+
+    modalProfile.classList.add('hide');
+    modalProfile.classList.remove('display');
+    modalProfile.classList.remove('modalProfile');
   });
 
   // -------------------------------------------------
@@ -156,19 +172,21 @@ export default () => {
         post.id = doc.id;
 
         // Para que los botones de eliminar y editar esten solo en mis publicaciones y el like para todos.
-        // console.log('uuid ' + idUser + ' ' + doc.data().idUser)
+        // console.log("uuid " + idUser + " " + doc.data().idUser)
         if (idUser !== doc.data().idUser) {
-          postContainer.innerHTML += `<div class='card-body-primary'>
+          postContainer.innerHTML += /*html*/ `<div class='card-body-primary'>
             ${doc.data().description}
               <div class='buttons'>
               <img src='./img/like.png' class='like' data-id='${post.id}'></img>
               </div>
             </div>`;
         } else {
-          postContainer.innerHTML += `<div class='card-body-primary'>
+          postContainer.innerHTML += /*html*/ `<div class='card-body-primary'>
             ${doc.data().description}
               <div class='buttons'>
-              <button class='btn btn-delete' data-id='${post.id}'>Eliminar</button>
+              <button class='btn btn-delete' data-id='${
+                post.id
+              }'>Eliminar</button>
               <button class='btn btn-edit' data-id='${post.id}'>Editar</button>
               <img src='./img/like.png' class='like' data-id='${post.id}'></img>
               </div>
@@ -176,9 +194,7 @@ export default () => {
 
           const buttonDelete = document.querySelectorAll('.btn-delete');
           buttonDelete.forEach((btn) => {
-            console.log('btn delette ' + btn.dataset.id);
             btn.addEventListener('click', (e) => {
-              console.log('click delete')
               var askConfirmation = confirm('De verdad quieres eliminarlo?');
               if (askConfirmation) {
                 deletePosts(e.target.dataset.id).then(() => {
@@ -198,25 +214,25 @@ export default () => {
               });
             });
           });
-          }
+        }
 
-      // Likes 
-          // const likes = document.querySelectorAll('.like');
-          //   likes.addEventListener('click', () => {
-          //     const result = doc.likes.indexOf(idUser);
-          //     if (result === -1) {
-          //       doc.likes.push(idUser);
-          //       likePost(doc.id, doc.likes);
-          //     } else {
-          //       doc.likes.splice(result, 1);
-          //       likePost(doc.id, doc.likes);
-          //     }
-          //   });
-          });
-        })
-      .catch((error) => {
-        console.log('Falló algo', error);
+        // Likes
+        // const likes = document.querySelectorAll('.like');
+        // likes.addEventListener('click', () => {
+        //   const result = doc.likes.indexOf(idUser);
+        //   if (result === -1) {
+        //     doc.likes.push(idUser);
+        //     likePost(doc.id, doc.likes);
+        //   } else {
+        //     doc.likes.splice(result, 1);
+        //     likePost(doc.id, doc.likes);
+        //   }
+        // });
       });
+    });
+    // .catch((error) => {
+    //   console.log('Falló algo', error);
+    // });
   }
 
   return divElemt;
