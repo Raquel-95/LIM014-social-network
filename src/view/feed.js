@@ -154,14 +154,17 @@ export default () => {
       list.forEach((doc) => {
         const post = doc.data();
         post.id = doc.id;
-
+        let nameImgLike = post.likes.indexOf(idUser) !== -1 ? 'like' : 'no-like';
+        console.log("liike " + post.id + " " + nameImgLike + " " + post.description);
+        
         // Para que los botones de eliminar y editar esten solo en mis publicaciones y el like para todos.
         // console.log('uuid ' + idUser + ' ' + doc.data().idUser)
         if (idUser !== doc.data().idUser) {
           postContainer.innerHTML += `<div class='card-body-primary'>
             ${doc.data().description}
               <div class='buttons'>
-              <img src='./img/like.png' class='like' data-id='${post.id}'></img>
+              <img src='./img/${nameImgLike}.png' class='like' data-id='${post.id}'></img>
+              ${doc.data().likes.length}
               </div>
             </div>`;
         } else {
@@ -170,15 +173,14 @@ export default () => {
               <div class='buttons'>
               <button class='btn btn-delete' data-id='${post.id}'>Eliminar</button>
               <button class='btn btn-edit' data-id='${post.id}'>Editar</button>
-              <img src='./img/like.png' class='like' data-id='${post.id}'></img>
+              <img src='./img/${nameImgLike}.png' class='like' data-id='${post.id}'></img>
+              ${doc.data().likes.length}
               </div>
             </div>`;
 
           const buttonDelete = document.querySelectorAll('.btn-delete');
           buttonDelete.forEach((btn) => {
-            console.log('btn delette ' + btn.dataset.id);
             btn.addEventListener('click', (e) => {
-              console.log('click delete')
               var askConfirmation = confirm('De verdad quieres eliminarlo?');
               if (askConfirmation) {
                 deletePosts(e.target.dataset.id).then(() => {
@@ -201,17 +203,27 @@ export default () => {
           }
 
       // Likes 
-          // const likes = document.querySelectorAll('.like');
-          //   likes.addEventListener('click', () => {
-          //     const result = doc.likes.indexOf(idUser);
-          //     if (result === -1) {
-          //       doc.likes.push(idUser);
-          //       likePost(doc.id, doc.likes);
-          //     } else {
-          //       doc.likes.splice(result, 1);
-          //       likePost(doc.id, doc.likes);
-          //     }
-          //   });
+          const likes = document.querySelectorAll('.like');
+          likes.forEach((like) => {
+            like.addEventListener('click', (e) => {
+
+              const idPost = e.target.dataset.id;
+
+              getPost(idPost).then((actualPost) => {
+                let likes = actualPost.data().likes; // trae los likes de esa publicacion
+                const result = likes.indexOf(idUser);
+                if (result === -1) { // -1 no existes en la lista de likes.
+                  likes.push(idUser); // si no existe lo agrega.
+                } else {
+                  likes.splice(result, 1); // si existe, elimina el like, elimina una posicion en la lista.
+                }
+                likesPost(idPost, likes).then(() => {// actualizar la lista de firebase
+                  listPost(divElemt);
+                }); 
+              });
+            });
+          })
+           
           });
         })
       .catch((error) => {
