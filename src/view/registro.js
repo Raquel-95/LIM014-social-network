@@ -38,6 +38,7 @@ export default () => {
       )
       .then(() => {
         loginUserEvent(usuarioSignUp, passwordSignUp);
+        return 5;
       })
       .catch((error) => {
         const errorContainer = divElem.querySelector('#errorMessage');

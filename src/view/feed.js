@@ -6,7 +6,7 @@ import {
   updatePost,
   publishPost,
   likesPost,
-  update,
+  //update,
 } from '../lib/feedservice.js';
 import { getCurrentUser } from '../firebase/auth.js';
 
@@ -98,6 +98,8 @@ export default () => {
 
   fotoUser.addEventListener('change', loaderUpdate);
 
+  modal;
+  
   imageProfile.addEventListener('click', () => {
     divElemt.querySelector('#nameUser').value = getCurrentUser().displayName;
     modalProfile.classList.add('display');

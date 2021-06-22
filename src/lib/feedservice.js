@@ -18,3 +18,4 @@ export const publishPost = (idUser, content) => firebase.firestore().collection(
     { 'idUser': idUser, 'description': content });
 
 export const likesPost = (id, likes) => firebase.firestore().collection('post').doc(id).update({ likes });
+
