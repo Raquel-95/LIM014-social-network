@@ -1,6 +1,6 @@
 /** @format */
 import { createUserAccount } from '../firebase/auth.js';
-import { loginUserEvent } from '../firebase/firebasecontroller.js';
+import { loginUserEvent } from '../firebase/firebase-controller.js';
 
 export default () => {
   const viewRegistro = /*html*/ `

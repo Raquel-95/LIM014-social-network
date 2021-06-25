@@ -2,7 +2,7 @@
 import {
   loginUserEvent,
   loginGoogleEvent,
-} from '../firebase/firebasecontroller.js';
+} from '../firebase/firebase-controller.js';
 
 export default () => {
   const viewSesion = /*html*/ `

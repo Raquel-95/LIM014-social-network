@@ -1,6 +1,6 @@
 /** @format */
 
-export const getPosts = () => firebase.firestore().collection('post').get();
+export const getPosts = () => firebase.firestore().collection('post').orderBy('timePost', 'desc').get();
 
 export const getPost = (id) => firebase.firestore().collection('post').doc(id).get();
 
@@ -9,7 +9,8 @@ export const deletePosts = (id) => firebase.firestore().collection('post').doc(i
 export const updatePost = (id, updatedpost) => firebase.firestore().collection('post').doc(id).update({'description': updatedpost});
 
 export const publishPost = (idUser, content) => firebase.firestore().collection('post').doc().set(
-    { 'idUser': idUser, 'description': content,   'timePost': new Date().toLocaleString('UMT-0500'),
-    'likes': []});
+    { 'idUser': idUser, 'description': content, 'timePost': new Date().toLocaleString('GMT-0500'), 'likes': []});
 
 export const likesPost = (id, likes) => firebase.firestore().collection('post').doc(id).update({ 'likes' :likes });
+
+// export const orderPostbyTimeDesc = (callback, idUser) => firebase.firestore().collection('post').doc(idUser).orderBy('timePost', 'desc')

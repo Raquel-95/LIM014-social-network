@@ -2,9 +2,9 @@ const firestore = () => {
     return {
         collection: (nameCollection) => {
             return {
-                add: (objData) => {
+                get: (objData) => {
                     return new Promise((resolve) => {
-                        resolve('la nota fue agregada')
+                        resolve('hello')
                     })
                  }
             }
@@ -17,6 +17,6 @@ const firebase = {
 }
 
 // convertir firebase en una mock function 
-export default jest.fn(() => {
-    return firebase;
+export default jest.fn(() => { // recibe como argumento una funcion que va a retornar nuestro firebse
+    return firebase; 
 })

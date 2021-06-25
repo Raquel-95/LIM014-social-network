@@ -1,33 +1,12 @@
 /** @format */
-
-// importamos la funcion que vamos a testear
-// import { myFunction } from '../src/lib/index';
-
-// describe('myFunction', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof myFunction).toBe('function');
-//   });
-// });
-
 // importamos la funcion que vamos a testear
 
-import firebasemock from 'firebase-mock';
 import {
   createUserAccount,
   loginUser,
   loginGoogle,
   logOut,
-} from '../src/firebase/auth';
-
-
-// MOCK MANUAL DE PUBLICACIONES
-
-import MockFirebase from '../__mocks__/firebase-mock.js';
-
-//para poder utilizarlo aquí, ejecutamos
-global.firebase = MockFirebase(); // todas las declaraciones que digan firebase van a ser reemplazadas por el mock creado.
-
-import { createUserAccount, loginUser, loginGoogle, logOut } from '../src/firebase/auth.js';
+} from '../src/firebase/auth.js';
 
 
 const mockauth = new firebasemock.MockAuthentication();

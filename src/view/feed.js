@@ -18,7 +18,7 @@ export default () => {
         <h2>Profile</h2>
         <div class='updateData'>
           <input type='text' placeholder='Update name' name='name' id='nameUser' />
-          <input type='file' id='fotoUser' class='hide' />
+          <input type='file' id='fotoUser' class='hide'/>
           <label for='fotoUser' id='selector' class='labelUpdatePhoto'> 
           </label>
           <div id='preview'></div>
@@ -155,10 +155,8 @@ export default () => {
         const post = doc.data();
         post.id = doc.id;
         let nameImgLike = post.likes.indexOf(idUser) !== -1 ? 'like' : 'no-like';
-        console.log("liike " + post.id + " " + nameImgLike + " " + post.description);
         
         // Para que los botones de eliminar y editar esten solo en mis publicaciones y el like para todos.
-        // console.log('uuid ' + idUser + ' ' + doc.data().idUser)
         if (idUser !== doc.data().idUser) {
           postContainer.innerHTML += `<div class='card-body-primary'>
             ${doc.data().description}

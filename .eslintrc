@@ -18,7 +18,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "avoidEscape": true,
+    "avoidEscape": 1,
     "linebreak-style": 0,
     "prefer-destructuring": 0,
     "import/extensions": 0,

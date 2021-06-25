@@ -5,6 +5,13 @@ body {
   font-family: Roboto;
 }
 
+.container .p-4 {
+  background-image: url('../img/fondo_feed.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
 /* .logo {
   position: absolute;
   width: 100px;
@@ -44,7 +51,7 @@ footer {
 }
 
 .logo-feed {
-  width: 80px;
+  width: 350px;
   height: 80px;
 }
 
@@ -69,7 +76,7 @@ footer {
 #main-feed {
   display: flex;
   justify-content: space-between;
-  background-color: rgba(242, 151, 5, 0.5);
+  background-color: rgba(243, 166, 43, 0.5);
   height: 90px;
   align-items: center;
 }
