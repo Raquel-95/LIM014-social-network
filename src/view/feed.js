@@ -38,11 +38,18 @@ export default () => {
         </br></br><h1 class='h4'>¡Publica algo sobre tus rutas!</h1></br></br>
 
           <form id='post-form'>
-            
             <div class='form-group'>
               <textarea id='post-description' rows='3' class='form-control' placeholder='¿En qué estas pensando?'></textarea>
+             
             </div>
+            <img id='image_to_post'>
             <input type='text' id='id-post' value=''>
+                <div class="image-upload">
+                    <label for="file-input">
+                        <img src="/img/icon-photo.png" id="icon-photo"/>
+                    </label>
+                    <input id="file-input" type="file"/>
+                </div>
             <button class='btn btn-primary' id='btn-post-form' disabled>
               Publicar
             </button>
@@ -51,7 +58,9 @@ export default () => {
       </div>
     </div>
     <!-- posts List -->
-    <div class='col-md-6' id='posts-container'></div>
+    <div class='col-md-6' id='posts-container'>
+      
+    </div>
   </div>
 </div>`;
 
@@ -71,6 +80,9 @@ export default () => {
   const fotoUser = divElemt.querySelector('#fotoUser');
   const output = divElemt.querySelector('#selector');
   const preview = divElemt.querySelector('#preview');
+  const uploadImg = divElemt.querySelector('#icon-photo');
+  const uploadButton = divElemt.querySelector('#file-input');
+  const photoPreview = divElemt.querySelector('#image_to_post');
   //const updateButton = divElemt.querySelector('#updateButton');
 
   const loaderUpdate = (e) => {
@@ -122,22 +134,29 @@ export default () => {
     }
   });
 
+  let pathPhoto;
+
   // Envio del formulario
   postForm.addEventListener('submit', (e) => {
+    console.log(pathPhoto);
     e.preventDefault(); // cancelar que se refresque la pagina
     const description = postForm['post-description'].value;
     const idPost = postForm['id-post'].value;
 
     // para una publicacion nueva
     if (idPost === '') {
-      publishPost(idUser, description).then(() => {
+      publishPost(idUser, description, pathPhoto).then(() => {
+        pathPhoto = '';
+        photoPreview.src = '';
         listPost(divElemt);
       });
     } else {
       // para una publicacion existente
-      updatePost(idPost, description).then(() => {
+      updatePost(idPost, description, pathPhoto).then(() => {
         postForm['id-post'].value = '';
         postForm['btn-post-form'].innerHTML = 'Publicar';
+        pathPhoto = '';
+        photoPreview.src = '';
         listPost(divElemt);
       });
     }
@@ -155,12 +174,26 @@ export default () => {
         const post = doc.data();
         post.id = doc.id;
         let nameImgLike = post.likes.indexOf(idUser) !== -1 ? 'like' : 'no-like';
-        
+        const imgPhotoId = "photo_post_" + post.id;
+        let imgPhotoHtml = "";
+
+        if(post.photo !== "" && post.photo != null){
+          imgPhotoHtml = `<img id="${imgPhotoId}"/>`
+        firebase.storage().ref().child(post.photo).getDownloadURL().then(function(url) {
+          console.log("downloadurl " + url);
+          const img = document.querySelector('#' + imgPhotoId);
+          img.src = url;
+          
+        }).catch(function(error) {
+          // Handle any errors
+        });
+      }
         // Para que los botones de eliminar y editar esten solo en mis publicaciones y el like para todos.
         if (idUser !== doc.data().idUser) {
           postContainer.innerHTML += `<div class='card-body-primary'>
             ${doc.data().description}
-              <div class='buttons'>
+            ${imgPhotoHtml}
+            <div class='buttons'>
               <img src='./img/${nameImgLike}.png' class='like' data-id='${post.id}'></img>
               ${doc.data().likes.length}
               </div>
@@ -168,9 +201,12 @@ export default () => {
         } else {
           postContainer.innerHTML += `<div class='card-body-primary'>
             ${doc.data().description}
+            ${imgPhotoHtml}
               <div class='buttons'>
-              <button class='btn btn-delete' data-id='${post.id}'>Eliminar</button>
-              <button class='btn btn-edit' data-id='${post.id}'>Editar</button>
+              <div id='icons-delete-edit'>
+                <img src='/img/icon-delete.png' class='btn btn-delete' data-id='${post.id}'/>
+                <img src='/img/icon-edit.png' class='btn btn-edit' data-id='${post.id}'/>
+              </div>
               <img src='./img/${nameImgLike}.png' class='like' data-id='${post.id}'></img>
               ${doc.data().likes.length}
               </div>
@@ -221,15 +257,50 @@ export default () => {
               });
             });
           })
-           
           });
         })
       .catch((error) => {
         console.log('Falló algo', error);
       });
+
+      // Agregar imagen a las publicaciones
+      uploadImg.addEventListener('click', (e) => {
+        console.log('quiero subir una imagen');
+      }
+      )
+
+      uploadButton.onchange = function(e){
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref();
+        const metadata = {
+          contentType: 'image/jpeg',
+        };
+        storageRef
+          .child(`imgPost/${file.name}`)
+          .put(file, metadata)
+          .then((snapshot) => {
+            let buttonPublicar = document.querySelector('#btn-post-form');
+            buttonPublicar.disabled = false;
+            snapshot.ref.getDownloadURL()
+            pathPhoto = snapshot.ref.fullPath;
+
+            firebase.storage().ref().child(pathPhoto).getDownloadURL().then(function(url) {
+              console.log("downloadurl " + url);
+              photoPreview.src = url;
+              
+            }).catch(function(error) {
+              // Handle any errors
+            });
+
+
+            })
+          .then((downloadURL) => {
+            console.log(downloadURL);
+            downloadURL})
+          .catch((error) => console.log(error));
+      }
+
   }
 
   return divElemt;
-};
-
-// Agregar imagen a las publicaciones
+}

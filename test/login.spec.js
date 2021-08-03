@@ -8,14 +8,19 @@ import {
   logOut,
 } from '../src/firebase/auth.js';
 
+const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockAuthentication();
+
 mockauth.autoFlush();
-const mocksdk = new firebasemock.MockFirebaseSdk(
-  // use null if your code does not use AUTHENTICATION
+
+global.firebase = firebasemock.MockFirebaseSdk(
+  () => null,
   () => mockauth
 );
-global.firebase = mocksdk;
+
+// global.firebase = mocksdk;
+
 describe('createUserAccount', () => {
   it('debería ser una función', () => {
     expect(typeof createUserAccount).toBe('function');

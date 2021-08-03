@@ -51,7 +51,7 @@ footer {
 }
 
 .logo-feed {
-  width: 350px;
+  width: 300px;
   height: 80px;
 }
 
@@ -82,9 +82,9 @@ footer {
 }
 
 .card-body-primary {
-  border: solid rgba(120, 147, 86, 0.69) 5px;
+  border: solid rgba(120, 147, 86, 0.69) 1px;
   border-radius: 10px;
-  border-width: 20px;
+  border-width: 10px;
   padding-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.637);
   outline: 10px;
@@ -106,7 +106,7 @@ footer {
 
 #post-form {
   width: 500px;
-  height: 220px;
+  height: 100%;
   left: 672px;
   top: 176px;
   background: rgba(120, 147, 86, 0.69);
@@ -162,7 +162,8 @@ footer {
 .perfil-feed{
   width: 400px;
   height: 300px;
-  background-color: #739356;
+  background-color:rgba(120, 147, 86, 0.69);
+  border-radius: 20px;
   margin-top: 50px;
   margin-left: 50px;
   }
@@ -178,3 +179,39 @@ footer {
     justify-content: center;
     align-items: center;
   }
+
+  #icon-photo{
+    width: 30px;
+    height: 30px;
+  }
+
+  .image-upload > input
+{
+    display: none;
+}
+
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
+}
+
+.btn-delete, .btn-edit{
+  width: 22px;
+  height: 22px;
+}
+
+#icons-delete-edit{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-body-primary>img{
+  width: auto;
+  height: 200px;
+}
+
+#image_to_post{
+  width: auto;
+  height: 100px;
+}

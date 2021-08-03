@@ -13,7 +13,6 @@
     "htmlhint": "htmlhint dist/*.html",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
-    "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --verbose --coverage",
     "start": "npx serve src/",
     "deploy": "gh-pages -d src"
@@ -26,13 +25,14 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^24.1.0",
+    "gh-pages": "^3.1.0",
     "htmlhint": "^0.14.0",
     "jest": "^26.4.2",
+    "mock-cloud-firestore": "^0.12.0",
     "regenerator-runtime": "^0.13.1",
     "serve": "^11.0.2",
     "stylelint": "^13.6.1",
-    "stylelint-config-recommended": "^4.0.0",
-    "gh-pages": "^3.1.0"
+    "stylelint-config-recommended": "^4.0.0"
   },
   "engines": {
     "node": ">=10"
