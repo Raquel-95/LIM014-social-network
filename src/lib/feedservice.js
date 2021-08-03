@@ -14,3 +14,14 @@ export const publishPost = (idUser, content, photo) => firebase.firestore().coll
 export const likesPost = (id, likes) => firebase.firestore().collection('post').doc(id).update({ 'likes' :likes });
 
 // export const orderPostbyTimeDesc = (callback, idUser) => firebase.firestore().collection('post').doc(idUser).orderBy('timePost', 'desc')
+// export const updateImage = (imgUpload, nameUser) => {
+//   const storageRef = firebase.storage().ref();
+//   const uploadResult = storageRef
+//     .child(`images/${imgUpload.name}`)
+//     .put(imgUpload);
+//   const downloadUrl = uploadResult.ref.getDownloadURL();
+//   firebase.auth().currentUser.updateProfile({
+//     photoURL: downloadUrl,
+//     displayName: nameUser,
+//   });
+// };

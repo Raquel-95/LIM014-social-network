@@ -1,6 +1,13 @@
 /** @format */
-import { getPosts, getPost, deletePosts, updatePost, publishPost, likesPost } from '../lib/feedservice.js';
-
+import {
+  getPosts,
+  getPost,
+  deletePosts,
+  updatePost,
+  publishPost,
+  //likesPost,
+  updateImage,
+} from '../lib/feedservice.js';
 import { getCurrentUser } from '../firebase/auth.js';
 
 export default () => {
@@ -30,7 +37,7 @@ export default () => {
   </div>
 
   <div class='row'>
-
+    
     <div class='col-md-6'>
       <div class='card'>
         <div class='card-body'>
@@ -50,13 +57,17 @@ export default () => {
                     </label>
                     <input id="file-input" type="file"/>
                 </div>
+           
             <button class='btn btn-primary' id='btn-post-form' disabled>
               Publicar
             </button>
           </form>
         </div>
       </div>
+      <!-- Tasks List -->
+      <div class='col-md-6' id='tasks-container'></div>
     </div>
+    <!-- profile -->
     <!-- posts List -->
     <div class='col-md-6' id='posts-container'>
       
@@ -70,7 +81,8 @@ export default () => {
 
   let idUser = '';
 
-  firebase.auth().onAuthStateChanged(function (user) { // onAuthStateChanged es un evento asincrono.
+  firebase.auth().onAuthStateChanged(function (user) {
+    // onAuthStateChanged es un evento asincrono.
     idUser = user.uid;
   });
 
@@ -83,11 +95,11 @@ export default () => {
   const uploadImg = divElemt.querySelector('#icon-photo');
   const uploadButton = divElemt.querySelector('#file-input');
   const photoPreview = divElemt.querySelector('#image_to_post');
-  //const updateButton = divElemt.querySelector('#updateButton');
+  // const updateButton = divElemt.querySelector('#updateButton');
 
   const loaderUpdate = (e) => {
     const file = e.target.files;
-    const show = `<span class='fileSelected'>Selected file: </span> ${file[0].name}`;
+    const show = `<span class="fileSelected">Selected file: </span> ${file[0].name}`;
     output.innerHTML = show;
 
     const reader = new FileReader();
@@ -109,7 +121,7 @@ export default () => {
     modalProfile.classList.add('display');
     modalProfile.classList.add('modalProfile');
     modalProfile.classList.remove('hide');
-    const show = `<span class='material-icons'>add_photo_alternate</span>
+    const show = `<span class="material-icons">add_photo_alternate</span>
     Choose a photo`;
     output.innerHTML = show;
     const img = document.createElement('img');
@@ -120,6 +132,16 @@ export default () => {
       preview.append(img);
     }
   });
+
+  // updateButton.addEventListener('click', () => {
+  //   const imgUpload = fotoUser.files[0];
+  //   const nameUser = divElemt.querySelector('#nameUser').value;
+  //   updateImage(imgUpload, nameUser);
+
+  //   modalProfile.classList.add('hide');
+  //   modalProfile.classList.remove('display');
+  //   modalProfile.classList.remove('modalProfile');
+  // });
 
   // -------------------------------------------------
   listPost(divElemt);
@@ -190,7 +212,7 @@ export default () => {
       }
         // Para que los botones de eliminar y editar esten solo en mis publicaciones y el like para todos.
         if (idUser !== doc.data().idUser) {
-          postContainer.innerHTML += `<div class='card-body-primary'>
+          postContainer.innerHTML += /*html*/ `<div class='card-body-primary'>
             ${doc.data().description}
             ${imgPhotoHtml}
             <div class='buttons'>
@@ -199,7 +221,7 @@ export default () => {
               </div>
             </div>`;
         } else {
-          postContainer.innerHTML += `<div class='card-body-primary'>
+          postContainer.innerHTML += /*html*/ `<div class='card-body-primary'>
             ${doc.data().description}
             ${imgPhotoHtml}
               <div class='buttons'>
