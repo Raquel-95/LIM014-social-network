@@ -5,8 +5,8 @@ import {
   deletePosts,
   updatePost,
   publishPost,
-  likesPost,
-  //update,
+  //likesPost,
+  updateImage,
 } from '../lib/feedservice.js';
 import { getCurrentUser } from '../firebase/auth.js';
 
@@ -98,8 +98,6 @@ export default () => {
 
   fotoUser.addEventListener('change', loaderUpdate);
 
-  modal;
-  
   imageProfile.addEventListener('click', () => {
     divElemt.querySelector('#nameUser').value = getCurrentUser().displayName;
     modalProfile.classList.add('display');
@@ -120,7 +118,7 @@ export default () => {
   updateButton.addEventListener('click', () => {
     const imgUpload = fotoUser.files[0];
     const nameUser = divElemt.querySelector('#nameUser').value;
-    update.updateImage(imgUpload, nameUser);
+    updateImage(imgUpload, nameUser);
 
     modalProfile.classList.add('hide');
     modalProfile.classList.remove('display');
