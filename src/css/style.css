@@ -33,14 +33,11 @@ h2 {
 #errorMessage {
   color: red;
 }
-footer {
-  position: absolute;
-}
 
-/* #inicio-sesion {
+#inicio-sesion {
   margin: 0;
   padding: 0;
-} */
+}
 
 .pantalla1 {
   display: flex;
@@ -68,7 +65,7 @@ footer {
   align-items: center;
   background: white;
   height: auto;
-  width: 800px;
+  width: auto;
   margin: 0;
   padding: 0;
   clear: left;
@@ -175,15 +172,6 @@ body {
   justify-content: center;
   align-items: center;
 } */
-
-footer {
-  top: 720px;
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap-reverse;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
 
 .logo-feed {
   width: 80px;
@@ -319,9 +307,10 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: auto;
-    height: 755px;
+    width: 750px;
+    height: 750px;
     background: rgba(242, 151, 5, 0.5);
+    margin-right: 150px;
   }
   .styleH2 {
     padding: 5px;
@@ -339,9 +328,6 @@ footer {
     font-family: roboto;
   }
 
-  footer {
-    display: none;
-  }
 
   #buttonLogout {
     border: none;
@@ -371,4 +357,12 @@ footer {
     margin: 50px;
     width: 600px;
   }
+}
+
+.h4{
+  color: black;
+  font-size: 25px;
+  font-family: 'Lucida Sans';
+  display: flex;
+  justify-content: center;
 }

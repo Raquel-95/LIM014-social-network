@@ -3,10 +3,10 @@ import { logOutEvent } from '../firebase/firebase-controller.js';
 
 export default () => {
   const viewFeed = /*html*/ `
-  <div id='main-feed'>
+  <header id='main-feed'>
     <img class='logo-feed' src='img/logo_2.png' alt='logo'>
     <button type='submit' id='buttonLogOut'>Cerrar sesión</button>
-  </div> `;
+  </header> `;
 
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');

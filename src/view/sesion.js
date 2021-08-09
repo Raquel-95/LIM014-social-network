@@ -6,23 +6,23 @@ import {
 
 export default () => {
   const viewSesion = /*html*/ `
-  <div id='main_screen'>
-    <div id='inicio-sesion'>
-      <div class='pantalla1'>
-        <div class='logotipo'><img src='img/logo.png' ></div>
-      </div>
-    </div>
-    <div class='form'>
+  <section id='main_screen'>
+    <section id='inicio-sesion'>
+      <section class='pantalla1'>
+        <section class='logotipo'><img src='img/logo.png' ></section>
+      </section>
+    </section>
+    <section class='form'>
       <h2>¡Bienvenido!</h2></br></br></br>
         <input type='text' placeholder='correo electrónico' id='usuarioSignIn' class='input_form'></br>
         <input type='password' placeholder='contraseña' id='contraseñaSignIn' class='input_form'></br>
         <button type='submit' id='buttonSignIn'><b>Iniciar sesión</b></button></br>
-      <div id='errorMessage'></div>
+      <section id='errorMessage'></section>
       <p class='textoSignIn'>Iniciar sesión con Google</p></br>
       <img src='img/google.png' id='signGoogle'></br></br>
-      <div class='registrate'><p>¿No tienes una cuenta?</p><a href='#/registro'>Regístrate</a></div>
-    </div>
-  </div>`;
+      <section class='registrate'><p>¿No tienes una cuenta?</p><a href='#/registro'>Regístrate</a></section>
+    </section>
+  </section>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = viewSesion;
 
@@ -34,7 +34,6 @@ export default () => {
     const usuarioSignIn = divElem.querySelector('#usuarioSignIn').value;
     const passwordSignIn = divElem.querySelector('#contraseñaSignIn').value;
     loginUserEvent(usuarioSignIn, passwordSignIn, errorContainer);
-    console.log('aqui');
   });
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();

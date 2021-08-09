@@ -4,20 +4,20 @@ import { loginUserEvent } from '../firebase/firebase-controller.js';
 
 export default () => {
   const viewRegistro = /*html*/ `
-  <div id='Registro'>
-    <div class='pantalla1'>
-    <div class='logotipo'><img src='img/logo.png' ></div>
-    </div>
-  <div class='form' id='form-register'>
+  <section id='Registro'>
+    <section class='pantalla1'>
+    <section class='logotipo'><img src='img/logo.png' ></section>
+    </section>
+  <section class='form' id='form-register'>
     <h2 class='styleH2'>¡Se parte de esta comunidad!</h2></br></br>
     <input type='text' placeholder='Nombre' id='displayName' class='input-register'></br>
     <input type='text' placeholder='Correo electrónico' id='usuarioSignUp' class='input-register'></br>
     <input type='text' placeholder='Contraseña' id='contraseñaSignUp' class='input-register'></br></br>
     <button type='submit' id='buttonSignUp'>Registrate</button></br></br>
-    <div id='errorMessage'></div></br>
-    <div class='iniciaSesion'><p>¿Ya tienes una cuenta?</p><a href='#/'>Inicia Sesión</a></div>
-  </div>
-  </div>`;
+    <section id='errorMessage'></section></br>
+    <section class='iniciaSesion'><p>¿Ya tienes una cuenta?</p><a href='#/'>Inicia Sesión</a></section>
+  </section>
+  </section>`;
 
   const divElem = document.createElement('div');
   divElem.innerHTML = '';
@@ -42,7 +42,7 @@ export default () => {
       })
       .catch((error) => {
         const errorContainer = divElem.querySelector('#errorMessage');
-        const templateError = `<div class ='modal-error'><p>Hubo un problema:${error}</p></div>`;
+        const templateError = `<section class ='modal-error'><p>Hubo un problema:${error}</p></section>`;
         errorContainer.innerHTML = templateError;
       });
   });
