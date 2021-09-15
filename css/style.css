@@ -1,0 +1,368 @@
+/** @format */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body {
+  margin: 0;
+  padding: 0;
+} */
+/* .container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+} */
+
+/* main {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+} */
+
+#main_screen {
+  display: flex;
+  height: 100%;
+}
+
+h2 {
+  font-size: 45px;
+}
+
+#errorMessage {
+  color: red;
+}
+
+#inicio-sesion {
+  margin: 0;
+  padding: 0;
+}
+
+.pantalla1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 755px;
+  background: rgba(242, 151, 5, 0.5);
+  float: left;
+}
+
+.logotipo {
+  justify-content: center;
+  align-items: center;
+}
+
+.logotipo img {
+  width: 500px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  height: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  clear: left;
+  font-size: 18px;
+  font-family: roboto;
+}
+
+#Registro {
+  display: flex;
+}
+
+.input-register {
+  width: 300px;
+  height: 50px;
+  background-color: wheat;
+  border-radius: 20px;
+  padding-left: 10px;
+  border-color: wheat;
+}
+
+.input_form {
+  background: #ffe0b2;
+  mix-blend-mode: normal;
+  border: 3px solid #fdd835;
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  padding-left: 10px;
+}
+
+#buttonSignIn,
+#buttonSignUp {
+  background: #789356;
+  border: 3px solid #789356;
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.iniciaSesion {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.registrate {
+  display: flex;
+  margin: 15px auto !important;
+  width: 80%;
+  justify-content: center;
+}
+
+#signGoogle {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.modalProfile {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+body {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+}
+
+/* .logo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 0px;
+  top: 200px;
+} */
+
+/* .fb {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 500px;
+  top: 500px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+} */
+/* .google {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 400px;
+  top: 500px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.logo-feed {
+  width: 80px;
+  height: 80px;
+}
+
+#imageProfile {
+  width: 80px;
+  height: 80px;
+  margin-left: 30px;
+}
+
+#buttonLogOut {
+  margin-right: 30px;
+  background-color: rgba(120, 147, 86, 0.69);
+  font-size: 18px;
+  width: 130px;
+  height: 50px;
+  border-radius: 20px;
+  border-color: #739356;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+#main-feed {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(242, 151, 5, 0.5);
+  height: 90px;
+  align-items: center;
+}
+
+.card-body-primary {
+  border: solid rgba(120, 147, 86, 0.69) 5px;
+  border-radius: 10px;
+  border-width: 20px;
+  padding-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.637);
+  outline: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px;
+  width: 500px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 250px;
+}
+
+#post-form {
+  width: 500px;
+  height: 220px;
+  left: 672px;
+  top: 176px;
+  background: rgba(120, 147, 86, 0.69);
+  border-radius: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-primary {
+  width: 80px;
+  height: 30px;
+  right: 124px;
+  top: calc(50% - 46px / 2 - 132px);
+  background: #c4c4c4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+#post-description {
+  width: 420px;
+  height: 130px;
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ocultar la caja del id para editar  */
+#id-post {
+  display: none;
+}
+
+/* like */
+.like {
+  width: 30px;
+  height: 30px;
+}
+
+.p-4 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.perfil-feed {
+  width: 400px;
+  height: 300px;
+  background-color: #739356;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.hide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (min-width: 500px) {
+  .pantalla1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 750px;
+    height: 750px;
+    background: rgba(242, 151, 5, 0.5);
+    margin-right: 150px;
+  }
+  .styleH2 {
+    padding: 5px;
+  }
+
+  .form {
+    display: flex;
+    align-items: center;
+    background: white;
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: roboto;
+  }
+
+
+  #buttonLogout {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: auto;
+  }
+  .card-body-primary {
+    border: solid rgba(120, 147, 86, 0.69) 5px;
+    border-radius: 10px;
+    border-width: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.637);
+    outline: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 50px;
+    width: 600px;
+  }
+}
+
+.h4{
+  color: black;
+  font-size: 25px;
+  font-family: 'Lucida Sans';
+  display: flex;
+  justify-content: center;
+}

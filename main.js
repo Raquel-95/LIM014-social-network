@@ -1,12 +1,14 @@
+/** @format */
+
 // Este es el punto de entrada de tu aplicacion
+import { firebaseInit } from './firebase/firebase-init.js';
+import { changeView } from './view-controller/router.js';
 
-import { changeTmp } from './lib/index';
-
+// Funcionalidad para las vistas
 const init = () => {
-  changeTmp(window.location.hash);
-  window.addEventListener('hashchange', () => changeTmp(window.location.hash));
+  firebaseInit();
+  changeView(window.location.hash);
+  window.addEventListener('hashchange', () => changeView(window.location.hash));
 };
 
-window.addEventListener('load', init);
-
-changeTmp();
+window.addEventListener('load', init); // llama a init una vez que la pagina este cargada
