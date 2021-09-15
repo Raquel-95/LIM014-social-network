@@ -1,7 +1,7 @@
 import MockFirebase from 'mock-cloud-firestore';
 
 import {
-    getPosts, getPost, deletePosts, updatePost, publishPost, likesPost
+    getPosts, deletePosts, updatePost, publishPost, likesPost
 } from '../src/lib/feedservice.js';
 
 const fixtureData = {

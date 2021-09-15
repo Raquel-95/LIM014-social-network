@@ -12,6 +12,7 @@ export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
+
 // para cerrar sesion
 export const logOut = () => firebase.auth().signOut();
 
@@ -28,15 +29,3 @@ export const findAuth = () => {
     }
   });
 };
-
-// const userPosted = firebase.auth().currentUser;
-
-// if (userPosted !== null) {
-//   user.providerData.forEach((profile) => {
-//     console.log("Sign-in provider: " + profile.providerId);
-//     console.log("  Provider-specific UID: " + profile.uid);
-//     console.log("  Name: " + profile.displayName);
-//     console.log("  Email: " + profile.email);
-//     console.log("  Photo URL: " + profile.photoURL);
-//   });
-// }
