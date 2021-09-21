@@ -52,7 +52,7 @@ export default () => {
             <input type='text' id='id-post' value=''>
                 <section class="image-upload">
                     <label for="file-input">
-                        <img src="/img/icon-photo.png" id="icon-photo"/>
+                        <img src="./img/icon-photo.png" id="icon-photo"/>
                     </label>
                     <input id="file-input" type="file"/>
                 </section>
@@ -225,8 +225,8 @@ export default () => {
             ${imgPhotoHtml}
               <section class='buttons'>
               <section id='icons-delete-edit'>
-                <img src='/img/icon-delete.png' class='btn btn-delete' data-id='${post.id}'/>
-                <img src='/img/icon-edit.png' class='btn btn-edit' data-id='${post.id}'/>
+                <img src='./img/icon-delete.png' class='btn btn-delete' data-id='${post.id}'/>
+                <img src='./img/icon-edit.png' class='btn btn-edit' data-id='${post.id}'/>
               </section>
               <img src='./img/${nameImgLike}.png' class='like' data-id='${post.id}'></img>
               ${doc.data().likes.length}
