@@ -64,7 +64,7 @@ footer {
   justify-content: flex-start;
   align-items: center;
   margin: 20px;
-  width: 500px;
+  width: 350px;
 }
 
 .row {
@@ -76,7 +76,7 @@ footer {
 }
 
 #post-form {
-  width: 500px;
+  width: 350px;
   height: 100%;
   left: 672px;
   top: 176px;
@@ -99,7 +99,7 @@ footer {
 }
 
 #post-description {
-  width: 420px;
+  width: 270px;
   height: 130px;
   margin: 20px;
   background-color: rgba(255, 255, 255, 0.85);
@@ -179,7 +179,7 @@ footer {
 
 .card-body-primary>img{
   width: auto;
-  height: 200px;
+  height: 150px;
 }
 
 #image_to_post{
