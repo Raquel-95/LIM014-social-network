@@ -159,7 +159,6 @@ export default () => {
 
   // Envio del formulario
   postForm.addEventListener('submit', (e) => {
-    console.log(pathPhoto);
     e.preventDefault(); // cancelar que se refresque la pagina
     const description = postForm['post-description'].value;
     const idPost = postForm['id-post'].value;
@@ -201,7 +200,6 @@ export default () => {
         if(post.photo !== "" && post.photo != null){
           imgPhotoHtml = `<img id="${imgPhotoId}"/>`
         firebase.storage().ref().child(post.photo).getDownloadURL().then(function(url) {
-          console.log("downloadurl " + url);
           const img = document.querySelector('#' + imgPhotoId);
           img.src = url;
           
@@ -306,7 +304,6 @@ export default () => {
             pathPhoto = snapshot.ref.fullPath;
 
             firebase.storage().ref().child(pathPhoto).getDownloadURL().then(function(url) {
-              console.log("downloadurl " + url);
               photoPreview.src = url;
               
             }).catch(function(error) {
